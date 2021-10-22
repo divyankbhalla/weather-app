@@ -26,4 +26,32 @@ function getWeatherReport(city) {
 
 function showWeatherReport(weather){
     console.log(weather);
+
+    let city = document.getElementById('city-name');
+    city.innerText = `${weather.name}, ${weather.sys.country}`;
+
+    let temprature = document.getElementById('temp');
+    temprature.innerText = `${weather.main.temp}`;
+
+    let min_max = document.getElementById('min-max');
+    min_max.innerText = `${weather.main.temp_min} min / ${weather.main.temp_max} max`;
+
+    let allDayWeather = document.getElementById('weather');
+    allDayWeather.innerText = `${weather.weather[0].main}`
+
+    let date = document.getElementById('date');
+    let todayDate = new Date();
+    date.innerText = manageDate(todayDate);
+}
+
+function manageDate(dateArgs){
+    let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    let months = ['January', 'Febuaray', 'March', 'April', 'May', 'June', 'Jully', 'August', 'September', 'October', 'November', 'December'];
+
+    let year = dateArgs.getFullYear();
+    let month = months[dateArgs.getMonth()];
+    let date = dateArgs.getDate();
+    let day = days[dateArgs.getDay()];
+    return `${date} ${month} (${day}), ${year}`;
 }
